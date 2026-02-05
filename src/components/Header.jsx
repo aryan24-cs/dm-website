@@ -34,8 +34,8 @@ const Header = () => {
             >
                 <div
                     className={`w-full max-w-5xl transition-all duration-500 rounded-full border backdrop-blur-md flex items-center justify-between px-6 py-3 ${isScrolled
-                            ? 'bg-slate-900/90 border-slate-700/50 shadow-lg shadow-cyan-500/10 scale-[0.98]'
-                            : 'bg-slate-900/40 border-white/10'
+                        ? 'bg-slate-900/90 border-slate-700/50 shadow-lg shadow-cyan-500/10 scale-[0.98]'
+                        : 'bg-slate-900/40 border-white/10'
                         }`}
                 >
                     {/* Logo */}
@@ -55,8 +55,8 @@ const Header = () => {
                                 key={link.path}
                                 to={link.path}
                                 className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${isActive(link.path)
-                                        ? 'text-white bg-white/10 shadow-sm'
-                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                    ? 'text-white bg-white/10 shadow-sm'
+                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                                     }`}
                             >
                                 {link.name}
