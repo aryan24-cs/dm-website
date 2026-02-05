@@ -17,7 +17,6 @@ const ContactForm = ({ title = "Let's Build Something Great", subtitle = "Ready 
         'SEO & Organic Growth',
         'Paid Advertising (PPC)',
         'Web Development',
-        'Content Strategy',
         'Other',
     ];
 
