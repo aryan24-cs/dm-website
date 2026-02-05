@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Custom CSS Variables */
+:root {
+    --bg-dark: #02020a;
+    /* Deepest Black-Blue */
+    --bg-card: rgba(10, 10, 25, 0.7);
+    --primary: #22d3ee;
+    /* Cyan */
+    --secondary: #818cf8;
+    /* Indigo */
+}
+
+/* Base Styles */
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: #e2e8f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.08), transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* 
+   -----------------------------
+   PREMIUM CARD STYLES 
+   -----------------------------
+*/
+
+.bento-card {
+    background: linear-gradient(145deg, rgba(18, 18, 35, 0.9) 0%, rgba(10, 10, 20, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Inner Shine Gradient (Top) */
+.bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.5), transparent);
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+/* Hover Effect */
+.bento-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow:
+        0 20px 40px -5px rgba(0, 0, 0, 0.6),
+        0 0 15px -3px rgba(34, 211, 238, 0.1);
+    /* Subtle Glow */
+}
+
+/* Inner content highlight for depth */
+.bento-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.04), transparent 40%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.bento-card:hover::after {
+    opacity: 1;
+}
+
+.form-card {
+    background: linear-gradient(135deg, rgba(15, 20, 35, 0.8), rgba(5, 5, 10, 0.95));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decoration behind form */
+.form-card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* MODERN INPUTS */
+.modern-input-group {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.modern-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.modern-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.1);
+}
+
+.modern-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.modern-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+}
+
+/* BUTTONS */
+.btn-glow {
+    background: linear-gradient(92deg, #22d3ee 0%, #3b82f6 100%);
+    color: #000;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(34, 211, 238, 0.4);
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-float-precise {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-marquee {
+    animation: marquee 30s linear infinite;
+}
+
+.section-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.section-tag::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--primary);
+}
+
+.text-balance {
+    text-wrap: balance;
+}
+
+/* 
+  -----------------------------
+  NEW: FAQ & RESULTS STYLES 
+  -----------------------------
+*/
+
+/* FAQ Panel */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.glass-panel.active {
+    background: rgba(34, 211, 238, 0.05);
+    /* Slight cyan tint */
+    border-color: rgba(34, 211, 238, 0.3);
+}
+
+/* Result Card */
+.result-card {
+    background: linear-gradient(135deg, rgba(10, 15, 30, 0.9), rgba(5, 5, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(34, 211, 238, 0.4);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+}
+
+.result-metric {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.result-card .industry-tag {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+/* FAQ Animation */
+.faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.faq-content.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+}
+
+.faq-content>div {
+    overflow: hidden;
+}
+
+
+/* Enhanced FAQ Styles */
+.faq-card {
+    background: rgba(15, 20, 35, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #22d3ee, #818cf8);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.faq-card:hover {
+    background: rgba(25, 30, 45, 0.8);
+    transform: translateX(5px);
+}
+
+.faq-card.active {
+    background: rgba(30, 35, 50, 0.9);
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.faq-card.active::before {
+    opacity: 1;
+}
+
+.faq-number {
+    font-family: 'Space Grotesk', sans-serif;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.faq-card:hover .faq-number,
+.faq-card.active .faq-number {
+    color: var(--primary);
+}
+
+/* Fix Dropdown Visibility */
+select.modern-input option {
+  background-color: #02020a;
+  color: #ffffff;
+  padding: 12px;
+}
