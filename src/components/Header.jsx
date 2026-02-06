@@ -131,8 +131,7 @@ const Header = () => {
                     />
                 </div>
 
-                {/* Grid Pattern Background */}
-                <div className="absolute inset-0 grid-pattern opacity-20" />
+
 
                 {/* Menu Content */}
                 <div className="relative h-full flex flex-col justify-center px-8 z-10">
@@ -157,18 +156,18 @@ const Header = () => {
                                 <span
                                     className="text-5xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:tracking-widest"
                                     style={{
-                                        WebkitTextStroke: '1px rgba(255, 255, 255, 0.4)',
+                                        WebkitTextStroke: isActive(link.path) ? '0px' : '1px #ffffff',
                                         color: isActive(link.path) ? '#ffffff' : 'transparent'
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.color = '#ffffff';
                                         e.target.style.WebkitTextStroke = '0px';
-                                        e.target.style.textShadow = '0 0 20px rgba(255,255,255,0.5)';
+                                        e.target.style.textShadow = 'none';
                                     }}
                                     onMouseLeave={(e) => {
                                         if (!isActive(link.path)) {
                                             e.target.style.color = 'transparent';
-                                            e.target.style.WebkitTextStroke = '1px rgba(255, 255, 255, 0.4)';
+                                            e.target.style.WebkitTextStroke = '1px #ffffff';
                                             e.target.style.textShadow = 'none';
                                         }
                                     }}
