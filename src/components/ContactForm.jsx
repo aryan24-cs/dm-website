@@ -56,28 +56,25 @@ const ContactForm = ({ title = "Let's Build Something Great", subtitle = "Ready 
     };
 
     return (
-        <section className="py-24 relative" id="contact">
+        <section className="py-24 relative bg-black" id="contact">
             <div className="max-w-4xl mx-auto px-6 relative z-10">
                 <AnimateOnScroll animation="fade-in-up">
                     <div className="form-card">
-                        <div className="form-card-glow" />
-
                         <div className="relative z-10">
                             <div className="text-center mb-10">
-                                <span className="section-tag justify-center mb-4">Contact Us</span>
                                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">{title}</h2>
                                 <p className="text-gray-400">{subtitle}</p>
                             </div>
 
                             {isSubmitted ? (
                                 <div className="text-center py-12 animate-fade-in">
-                                    <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/50">
-                                        <svg className="w-10 h-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/10 flex items-center justify-center border border-white">
+                                        <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">Message Received!</h3>
-                                    <p className="text-gray-400">We'll be in touch shortly.</p>
+                                    <h3 className="text-2xl font-bold text-white mb-2">Message Received</h3>
+                                    <p className="text-gray-400">We will be in touch shortly.</p>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -90,9 +87,9 @@ const ContactForm = ({ title = "Let's Build Something Great", subtitle = "Ready 
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 placeholder="John Doe"
-                                                className={`modern-input ${errors.name ? 'border-red-500 text-red-100' : ''}`}
+                                                className={`modern-input ${errors.name ? 'border-red-800' : ''}`}
                                             />
-                                            {errors.name && <p className="text-red-400 text-xs mt-1 absolute">{errors.name}</p>}
+                                            {errors.name && <p className="text-red-500 text-xs mt-1 absolute">{errors.name}</p>}
                                         </div>
                                         <div className="modern-input-group">
                                             <label className="modern-label">Email</label>
@@ -102,9 +99,9 @@ const ContactForm = ({ title = "Let's Build Something Great", subtitle = "Ready 
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 placeholder="john@company.com"
-                                                className={`modern-input ${errors.email ? 'border-red-500' : ''}`}
+                                                className={`modern-input ${errors.email ? 'border-red-800' : ''}`}
                                             />
-                                            {errors.email && <p className="text-red-400 text-xs mt-1 absolute">{errors.email}</p>}
+                                            {errors.email && <p className="text-red-500 text-xs mt-1 absolute">{errors.email}</p>}
                                         </div>
                                     </div>
 
@@ -126,19 +123,19 @@ const ContactForm = ({ title = "Let's Build Something Great", subtitle = "Ready 
                                                 name="service"
                                                 value={formData.service}
                                                 onChange={handleChange}
-                                                className={`modern-input appearance-none bg-[#0f1423] ${errors.service ? 'border-red-500' : ''}`}
+                                                className={`modern-input appearance-none ${errors.service ? 'border-red-800' : ''}`}
                                             >
                                                 <option value="" disabled>Select a service</option>
                                                 {services.map((service) => (
                                                     <option key={service} value={service}>{service}</option>
                                                 ))}
                                             </select>
-                                            <div className="absolute right-4 top-[3.2rem] pointer-events-none text-gray-500">
+                                            <div className="absolute right-4 top-[2.5rem] pointer-events-none text-gray-500">
                                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </div>
-                                            {errors.service && <p className="text-red-400 text-xs mt-1 absolute">{errors.service}</p>}
+                                            {errors.service && <p className="text-red-500 text-xs mt-1 absolute">{errors.service}</p>}
                                         </div>
                                     </div>
 
@@ -157,14 +154,9 @@ const ContactForm = ({ title = "Let's Build Something Great", subtitle = "Ready 
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="btn-glow mt-4 flex justify-center items-center gap-2 group"
+                                        className="btn-glow mt-4"
                                     >
-                                        {isSubmitting ? 'Sending...' : 'Send Message'}
-                                        {!isSubmitting && (
-                                            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                            </svg>
-                                        )}
+                                        {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
                                     </button>
                                 </form>
                             )}

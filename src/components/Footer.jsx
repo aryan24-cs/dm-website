@@ -59,25 +59,16 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative bg-slate-900 pt-20 pb-8 overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 grid-pattern opacity-30" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
-
+        <footer className="relative bg-black pt-20 pb-8 overflow-hidden border-t border-white/10">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     {/* Brand Section */}
                     <div className="lg:col-span-1">
-                        <Link to="/" className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-indigo-500 flex items-center justify-center">
-                                <span className="text-white font-bold text-2xl">D</span>
-                            </div>
-                            <span className="text-2xl font-bold text-white">
-                                Digital<span className="text-cyan-400">Pro</span>
-                            </span>
+                        <Link to="/" className="flex items-center gap-2 mb-6">
+                            <img src="/images/logo.png" alt="Adzenity" className="h-16 w-auto object-contain" />
                         </Link>
-                        <p className="text-gray-400 mb-6 leading-relaxed">
-                            We're a full-service digital marketing agency helping businesses grow their online presence and drive measurable results.
+                        <p className="text-gray-400 mb-6 leading-relaxed text-sm">
+                            Performance that delivers. We build digital experiences that drive real business growth.
                         </p>
                         <div className="flex gap-4">
                             {socialLinks.map((social) => (
@@ -85,7 +76,7 @@ const Footer = () => {
                                     key={social.name}
                                     href={social.href}
                                     aria-label={social.name}
-                                    className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
+                                    className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all duration-300"
                                 >
                                     {social.icon}
                                 </a>
@@ -95,17 +86,15 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="text-white font-semibold text-lg mb-6">Quick Links</h4>
+                        <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Explore</h4>
                         <ul className="space-y-4">
                             {quickLinks.map((link) => (
                                 <li key={link.path}>
                                     <Link
                                         to={link.path}
-                                        className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2"
+                                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group"
                                     >
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
+                                        <span className="w-1 h-1 rounded-full bg-gray-600 group-hover:bg-white transition-colors"></span>
                                         {link.name}
                                     </Link>
                                 </li>
@@ -115,14 +104,11 @@ const Footer = () => {
 
                     {/* Services */}
                     <div>
-                        <h4 className="text-white font-semibold text-lg mb-6">Our Services</h4>
+                        <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Services</h4>
                         <ul className="space-y-4">
                             {services.map((service, index) => (
                                 <li key={index}>
-                                    <span className="text-gray-400 flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                                        {service}
-                                    </span>
+                                    <span className="text-gray-400 text-sm">{service}</span>
                                 </li>
                             ))}
                         </ul>
@@ -130,36 +116,20 @@ const Footer = () => {
 
                     {/* Contact Info */}
                     <div>
-                        <h4 className="text-white font-semibold text-lg mb-6">Contact Us</h4>
+                        <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Contact</h4>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </div>
                                 <div>
-                                    <p className="text-gray-400">123 Business Avenue,<br />New York, NY 10001</p>
+                                    <p className="text-gray-400 text-sm leading-relaxed">123 Business Avenue,<br />New York, NY 10001</p>
                                 </div>
                             </li>
                             <li className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <a href="mailto:hello@digitalpro.com" className="text-gray-400 hover:text-cyan-400 transition-colors">
-                                    hello@digitalpro.com
+                                <a href="mailto:hello@adzenity.com" className="text-gray-400 hover:text-white transition-colors text-sm">
+                                    hello@adzenity.com
                                 </a>
                             </li>
                             <li className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                </div>
-                                <a href="tel:+1234567890" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <a href="tel:+1234567890" className="text-gray-400 hover:text-white transition-colors text-sm">
                                     +1 (234) 567-890
                                 </a>
                             </li>
@@ -169,18 +139,18 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-gray-500 text-sm text-center md:text-left">
-                        © {currentYear} DigitalPro. All rights reserved.
+                    <p className="text-gray-500 text-xs text-center md:text-left uppercase tracking-wider">
+                        © {currentYear} ADZENITY. All rights reserved.
                     </p>
-                    <div className="flex gap-6 text-sm">
-                        <a href="#" className="text-gray-500 hover:text-cyan-400 transition-colors">
-                            Privacy Policy
+                    <div className="flex gap-6 text-xs uppercase tracking-wider">
+                        <a href="#" className="text-gray-500 hover:text-white transition-colors">
+                            Privacy
                         </a>
-                        <a href="#" className="text-gray-500 hover:text-cyan-400 transition-colors">
-                            Terms of Service
+                        <a href="#" className="text-gray-500 hover:text-white transition-colors">
+                            Terms
                         </a>
-                        <a href="#" className="text-gray-500 hover:text-cyan-400 transition-colors">
-                            Cookie Policy
+                        <a href="#" className="text-gray-500 hover:text-white transition-colors">
+                            Cookies
                         </a>
                     </div>
                 </div>

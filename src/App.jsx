@@ -1,38 +1,33 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import SEOServices from './pages/SEOServices';
 import AdsServices from './pages/AdsServices';
 import WebDevelopment from './pages/WebDevelopment';
-
-// Scroll to top on route change
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-900">
+    <Router>
       <ScrollToTop />
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/seo" element={<SEOServices />} />
-          <Route path="/ads" element={<AdsServices />} />
-          <Route path="/development" element={<WebDevelopment />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+
+      {/* GLOBAL ANIMATED BACKGROUND */}
+      <div className="animated-grid-bg" />
+
+      <div className="flex flex-col min-h-screen relative z-10 text-white">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/seo" element={<SEOServices />} />
+            <Route path="/ads" element={<AdsServices />} />
+            <Route path="/development" element={<WebDevelopment />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

@@ -9,16 +9,10 @@ const FAQ = ({ faqs, title = 'Frequently Asked Questions', subtitle = 'Everythin
     };
 
     return (
-        <section className="py-24 relative overflow-hidden">
-            {/* Background Decor - Subtle Grid */}
-            <div className="absolute inset-0 pointer-events-none opacity-20"
-                style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }}
-            />
-
+        <section className="py-24 relative bg-black">
             <div className="max-w-4xl mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
                     <AnimateOnScroll animation="fade-in-up">
-                        <span className="section-tag justify-center mb-4">Support</span>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             {title}
                         </h2>
@@ -36,17 +30,17 @@ const FAQ = ({ faqs, title = 'Frequently Asked Questions', subtitle = 'Everythin
                             >
                                 <button
                                     onClick={() => toggleFAQ(index)}
-                                    className="w-full px-8 py-6 flex items-center gap-6 text-left group-hover:bg-white/[0.02] transition-colors"
+                                    className="w-full px-8 py-6 flex items-center gap-6 text-left"
                                 >
                                     <span className="faq-number">
                                         {(index + 1).toString().padStart(2, '0')}
                                     </span>
 
-                                    <span className={`text-lg font-medium flex-grow transition-colors ${openIndex === index ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+                                    <span className={`text-lg font-medium flex-grow transition-colors ${openIndex === index ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>
                                         {faq.question}
                                     </span>
 
-                                    <div className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-all duration-300 ${openIndex === index ? 'bg-cyan-500 border-cyan-500 rotate-135' : 'group-hover:border-cyan-500/50'}`}>
+                                    <div className={`w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center transition-all duration-300 ${openIndex === index ? 'bg-white border-white rotate-135' : 'group-hover:border-white'}`}>
                                         <svg
                                             className={`w-4 h-4 transition-colors ${openIndex === index ? 'text-black' : 'text-gray-400 group-hover:text-white'}`}
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -58,7 +52,7 @@ const FAQ = ({ faqs, title = 'Frequently Asked Questions', subtitle = 'Everythin
 
                                 <div className={`faq-content ${openIndex === index ? 'open' : ''}`}>
                                     <div className="px-8 pb-8 pt-0 pl-20">
-                                        <p className="text-gray-400 leading-relaxed text-base border-t border-white/5 pt-4">
+                                        <p className="text-gray-400 leading-relaxed text-base border-t border-white/10 pt-4">
                                             {faq.answer}
                                         </p>
                                     </div>

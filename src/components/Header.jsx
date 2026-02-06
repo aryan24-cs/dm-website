@@ -20,9 +20,9 @@ const Header = () => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'SEO Services', path: '/seo' },
+        { name: 'SEO', path: '/seo' },
         { name: 'Ads', path: '/ads' },
-        { name: 'Development', path: '/development' },
+        { name: 'Dev', path: '/development' },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -30,70 +30,70 @@ const Header = () => {
     return (
         <>
             <header
-                className={`fixed top-4 left-0 right-0 z-50 transition-all duration-500 flex justify-center px-4`}
+                className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 pt-4 md:pt-6 px-4`}
             >
                 <div
-                    className={`w-full max-w-5xl transition-all duration-500 rounded-full border backdrop-blur-md flex items-center justify-between px-6 py-3 ${isScrolled
-                        ? 'bg-slate-900/90 border-slate-700/50 shadow-lg shadow-cyan-500/10 scale-[0.98]'
-                        : 'bg-slate-900/40 border-white/10'
+                    className={`relative w-full max-w-6xl rounded-full border border-white/10 flex items-center justify-between pl-4 md:pl-6 pr-2 py-2 md:py-3 backdrop-blur-xl transition-all duration-500 ${isScrolled
+                        ? 'bg-black/80 shadow-2xl shadow-black/50 scale-[1.02]'
+                        : 'bg-black/40'
                         }`}
                 >
-                    {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2 group relative z-50">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-500 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-                            <span className="text-white font-bold text-sm">D</span>
-                        </div>
-                        <span className="text-lg font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
-                            Digital<span className="text-cyan-400">Pro</span>
-                        </span>
-                    </Link>
+                    {/* Logo - Positioned Absolute */}
+                    <div className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 z-50">
+                        <Link to="/" className="block">
+                            <img
+                                src="/images/logo.png"
+                                alt="Adzenity"
+                                className="h-14 md:h-24 w-auto object-contain drop-shadow-2xl filter brightness-110 transition-all duration-300"
+                            />
+                        </Link>
+                    </div>
 
-                    {/* Desktop Navigation - Centered */}
-                    <nav className="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1 border border-white/5">
+                    {/* Spacer for Logo */}
+                    <div className="w-16 md:w-32"></div>
+
+                    {/* Desktop Navigation */}
+                    <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${isActive(link.path)
-                                    ? 'text-white bg-white/10 shadow-sm'
-                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 relative group overflow-hidden ${isActive(link.path)
+                                    ? 'text-black bg-white'
+                                    : 'text-gray-400 hover:text-white hover:bg-white/10'
                                     }`}
                             >
-                                {link.name}
+                                <span className="relative z-10">{link.name}</span>
                             </Link>
                         ))}
                     </nav>
 
                     {/* Right Side Actions */}
                     <div className="flex items-center gap-4">
-                        <Link
-                            to="/#contact"
-                            className="hidden md:flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 active:scale-95"
-                        >
-                            <span>Get Started</span>
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </Link>
+                        <div className="hidden md:block">
+                            <Link
+                                to="/#contact"
+                                className="btn-primary text-xs px-6 py-2.5 rounded-full border-none !bg-white !text-black hover:!bg-gray-200"
+                            >
+                                Get Started
+                            </Link>
+                        </div>
 
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors z-50"
+                            className="md:hidden relative w-10 h-10 flex items-center justify-center z-50 text-white rounded-full bg-white/10"
                             aria-label="Toggle menu"
                         >
-                            <div className="flex flex-col items-end gap-1.5">
+                            <div className="flex flex-col items-center justify-center gap-1.5 w-5">
                                 <span
-                                    className={`h-0.5 bg-white rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'
-                                        }`}
+                                    className={`h-0.5 bg-white w-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
                                 />
                                 <span
-                                    className={`h-0.5 bg-white rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'w-0 opacity-0' : 'w-4'
-                                        }`}
+                                    className={`h-0.5 bg-white w-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}
                                 />
                                 <span
-                                    className={`h-0.5 bg-white rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'w-6 -rotate-45 -translate-y-2' : 'w-5'
-                                        }`}
+                                    className={`h-0.5 bg-white w-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
                                 />
                             </div>
                         </button>
@@ -106,14 +106,12 @@ const Header = () => {
                 className={`fixed inset-0 z-40 transition-all duration-500 md:hidden ${isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
                     }`}
             >
-                {/* Backdrop */}
                 <div
-                    className={`absolute inset-0 bg-slate-900/95 backdrop-blur-2xl transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+                    className={`absolute inset-0 bg-black/95 backdrop-blur-2xl transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
                         }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
 
-                {/* Menu Content */}
                 <div className={`relative h-full flex flex-col items-center justify-center p-6 space-y-8 transition-all duration-500 delay-100 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                     }`}>
                     {navLinks.map((link, index) => (
@@ -121,22 +119,19 @@ const Header = () => {
                             key={link.path}
                             to={link.path}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-3xl font-bold text-white hover:text-cyan-400 transition-colors"
-                            style={{ transitionDelay: `${index * 50}ms` }}
+                            className="text-3xl font-bold text-white uppercase tracking-widest hover:text-gray-400 transition-colors"
                         >
                             {link.name}
                         </Link>
                     ))}
 
-                    <div className="pt-8 w-full max-w-xs">
-                        <Link
-                            to="/#contact"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="btn-primary w-full flex justify-center items-center text-white py-4 text-lg"
-                        >
-                            Start Project
-                        </Link>
-                    </div>
+                    <Link
+                        to="/#contact"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-3xl font-bold text-white uppercase tracking-widest hover:text-gray-400 transition-colors"
+                    >
+                        Get Started
+                    </Link>
                 </div>
             </div>
         </>

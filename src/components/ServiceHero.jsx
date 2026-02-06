@@ -1,27 +1,24 @@
 import AnimateOnScroll from './AnimateOnScroll';
 
-const ServiceHero = ({ title, subtitle, description, icon, gradient = 'from-cyan-500 to-indigo-500' }) => {
+const ServiceHero = ({ title, subtitle, description, icon }) => {
     return (
-        <section className="relative min-h-[70vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <section className="relative min-h-[70vh] flex items-center justify-center pt-32 md:pt-48 pb-16 overflow-hidden bg-black">
             {/* Background Effects */}
-            <div className="absolute inset-0 grid-pattern opacity-20" />
-            <div className={`hero-glow top-1/4 left-1/4 bg-gradient-to-r ${gradient} opacity-20`} />
-            <div className="hero-glow bottom-0 right-1/4 from-indigo-500/10 to-pink-500/10" />
+            <div className="absolute inset-0 grid-pattern opacity-10" />
 
-            {/* Floating Elements */}
-            <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-cyan-500/10 animate-float" />
-            <div className="absolute top-40 right-20 w-16 h-16 rounded-xl bg-indigo-500/10 animate-float delay-200" />
-            <div className="absolute bottom-20 left-1/4 w-12 h-12 rounded-lg bg-pink-500/10 animate-float delay-300" />
+            {/* Subtle White Glows */}
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-white opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gray-500 opacity-[0.03] blur-[150px] rounded-full pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
                 <AnimateOnScroll animation="fade-in-up">
-                    <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${gradient} mb-8`}>
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/5 border border-white/10 mb-8 text-white">
                         {icon}
                     </div>
                 </AnimateOnScroll>
 
                 <AnimateOnScroll animation="fade-in-up" delay={100}>
-                    <span className="inline-block px-4 py-2 bg-white/5 text-cyan-400 rounded-full text-sm font-medium mb-6 border border-white/10">
+                    <span className="section-tag mb-6">
                         {subtitle}
                     </span>
                 </AnimateOnScroll>
@@ -40,18 +37,15 @@ const ServiceHero = ({ title, subtitle, description, icon, gradient = 'from-cyan
 
                 <AnimateOnScroll animation="fade-in-up" delay={400}>
                     <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="#contact-form" className="btn-primary text-white">
+                        <a href="#contact-form" className="btn-primary">
                             Get Free Consultation
-                        </a>
-                        <a href="#features" className="btn-secondary text-white">
-                            Learn More
                         </a>
                     </div>
                 </AnimateOnScroll>
             </div>
 
-            {/* Bottom Gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900 to-transparent" />
+            {/* Bottom Fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
         </section>
     );
 };
