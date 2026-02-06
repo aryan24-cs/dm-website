@@ -105,7 +105,8 @@ h6 {
 .bento-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 2px;
+    border-radius: 24px;
+    /* ROUNDED */
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -152,6 +153,8 @@ h6 {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
+    border-radius: 50px;
+    /* ROUNDED TAGS */
 }
 
 /* FORM STYLES */
@@ -161,6 +164,8 @@ h6 {
     padding: 3rem;
     position: relative;
     z-index: 20;
+    border-radius: 24px;
+    /* ROUNDED */
 }
 
 .modern-input-group {
@@ -181,7 +186,8 @@ h6 {
     width: 100%;
     background: var(--bg-input);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
+    border-radius: 12px;
+    /* ROUNDED INPUTS */
     padding: 1.25rem;
     color: #fff;
     font-family: 'Space Grotesk', sans-serif;
@@ -215,6 +221,8 @@ select.modern-input option {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50px;
+    /* ROUNDED PILL */
 }
 
 .btn-primary:hover {
@@ -233,6 +241,8 @@ select.modern-input option {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-family: 'Space Grotesk', sans-serif;
+    border-radius: 50px;
+    /* ROUNDED PILL */
 }
 
 .btn-glow:hover {
@@ -246,6 +256,8 @@ select.modern-input option {
     border: 1px solid var(--border-color);
     margin-bottom: 1rem;
     transition: all 0.3s ease;
+    border-radius: 16px;
+    /* ROUNDED */
 }
 
 .faq-card:hover {
@@ -296,6 +308,8 @@ select.modern-input option {
     flex-direction: column;
     transition: all 0.4s ease;
     z-index: 20;
+    border-radius: 24px;
+    /* ROUNDED */
 }
 
 .result-card:hover {
@@ -312,6 +326,8 @@ select.modern-input option {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border-radius: 50px;
+    /* ROUNDED PILL */
 }
 
 .result-metric {
