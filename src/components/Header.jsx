@@ -18,6 +18,18 @@ const Header = () => {
         setIsMobileMenuOpen(false);
     }, [location]);
 
+    // Prevent scrolling when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMobileMenuOpen]);
+
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'SEO', path: '/seo' },
@@ -38,9 +50,9 @@ const Header = () => {
                         : 'bg-black/40'
                         }`}
                 >
-                    {/* Logo - Positioned Absolute */}
+                    {/* Logo */}
                     <div className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 z-50">
-                        <Link to="/" className="block">
+                        <Link to="/" className="block" onClick={() => setIsMobileMenuOpen(false)}>
                             <img
                                 src="/images/logo.png"
                                 alt="Adzenity"
@@ -79,59 +91,93 @@ const Header = () => {
                             </Link>
                         </div>
 
-                        {/* Mobile Menu Button */}
+                        {/* Mobile Menu Button (Hamburger) */}
                         <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden relative w-10 h-10 flex items-center justify-center z-50 text-white rounded-full bg-white/10"
-                            aria-label="Toggle menu"
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className="md:hidden relative w-12 h-12 flex items-center justify-center z-50 text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                            aria-label="Open menu"
                         >
-                            <div className="flex flex-col items-center justify-center gap-1.5 w-5">
-                                <span
-                                    className={`h-0.5 bg-white w-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
-                                />
-                                <span
-                                    className={`h-0.5 bg-white w-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}
-                                />
-                                <span
-                                    className={`h-0.5 bg-white w-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
-                                />
-                            </div>
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
                         </button>
                     </div>
                 </div>
             </header>
 
-            {/* Mobile Menu Overlay */}
+            {/* FULL SCREEN MOBILE MENU OVERLAY (z-60 to sit firmly on top) */}
             <div
-                className={`fixed inset-0 z-40 transition-all duration-500 md:hidden ${isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
+                className={`fixed inset-0 z-[60] md:hidden bg-black transition-all duration-500 flex flex-col ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                     }`}
             >
-                <div
-                    className={`absolute inset-0 bg-black/95 backdrop-blur-2xl transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
-                        }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                />
-
-                <div className={`relative h-full flex flex-col items-center justify-center p-6 space-y-8 transition-all duration-500 delay-100 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                    }`}>
-                    {navLinks.map((link, index) => (
-                        <Link
-                            key={link.path}
-                            to={link.path}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-3xl font-bold text-white uppercase tracking-widest hover:text-gray-400 transition-colors"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-
-                    <Link
-                        to="/#contact"
+                {/* Close Button Top Right */}
+                <div className="absolute top-6 right-6 z-50">
+                    <button
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-3xl font-bold text-white uppercase tracking-widest hover:text-gray-400 transition-colors"
+                        className="w-12 h-12 flex items-center justify-center text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                     >
-                        Get Started
-                    </Link>
+                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Logo in Menu for Context */}
+                <div className="absolute top-6 left-6 z-50">
+                    <img
+                        src="/images/logo.png"
+                        alt="Adzenity"
+                        className="h-14 w-auto object-contain"
+                    />
+                </div>
+
+                {/* Grid Pattern Background */}
+                <div className="absolute inset-0 grid-pattern opacity-20" />
+
+                {/* Menu Content */}
+                <div className="relative h-full flex flex-col justify-center px-8 z-10">
+                    <div className="flex flex-col space-y-6">
+                        {navLinks.map((link, index) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className={`group text-4xl font-bold text-white tracking-wide transition-all duration-500 transform font-space flex items-center ${isMobileMenuOpen
+                                        ? 'translate-x-0 opacity-100'
+                                        : 'translate-x-10 opacity-0'
+                                    }`}
+                                style={{ transitionDelay: `${100 + (index * 50)}ms` }}
+                            >
+                                {/* Animated Line */}
+                                <span className="h-[2px] bg-white w-0 transition-all duration-300 group-hover:w-12 group-hover:mr-6 shadow-[0_0_10px_rgba(255,255,255,0.8)]"></span>
+
+                                {/* Link Text */}
+                                <span className="transition-transform duration-300 group-hover:text-gray-300 group-hover:translate-x-2">
+                                    {link.name}
+                                </span>
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Divider */}
+                    <div
+                        className={`h-px bg-white/20 w-full my-10 transition-all duration-500 ${isMobileMenuOpen ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+                            }`}
+                    />
+
+                    {/* CTA Button */}
+                    <div
+                        className={`transition-all duration-500 delay-300 ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                            }`}
+                    >
+                        <Link
+                            to="/#contact"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="inline-flex items-center justify-center w-full py-5 px-8 bg-white text-black font-extrabold text-xl uppercase tracking-widest hover:bg-gray-200 transition-all rounded-sm shadow-xl"
+                        >
+                            Get Started
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>
