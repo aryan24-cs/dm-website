@@ -62,10 +62,10 @@ const Header = () => {
                     </div>
 
                     {/* Spacer for Logo */}
-                    <div className="w-16 md:w-32"></div>
+                    <div className="w-16 lg:w-32"></div>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+                    <nav className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.path}
@@ -82,7 +82,7 @@ const Header = () => {
 
                     {/* Right Side Actions */}
                     <div className="flex items-center gap-4">
-                        <div className="hidden md:block">
+                        <div className="hidden lg:block">
                             <Link
                                 to="/#contact"
                                 className="btn-primary text-xs px-6 py-2.5 rounded-full border-none !bg-white !text-black hover:!bg-gray-200"
@@ -94,7 +94,7 @@ const Header = () => {
                         {/* Mobile Menu Button (Hamburger) */}
                         <button
                             onClick={() => setIsMobileMenuOpen(true)}
-                            className="md:hidden relative w-12 h-12 flex items-center justify-center z-50 text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                            className="lg:hidden relative w-12 h-12 flex items-center justify-center z-50 text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                             aria-label="Open menu"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,17 +142,37 @@ const Header = () => {
                                 key={link.path}
                                 to={link.path}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className={`group text-4xl font-bold text-white tracking-wide transition-all duration-500 transform font-space flex items-center ${isMobileMenuOpen
-                                        ? 'translate-x-0 opacity-100'
-                                        : 'translate-x-10 opacity-0'
+                                className={`group flex items-baseline gap-6 transition-all duration-500 transform ${isMobileMenuOpen
+                                    ? 'translate-x-0 opacity-100'
+                                    : 'translate-x-[50px] opacity-0'
                                     }`}
-                                style={{ transitionDelay: `${100 + (index * 50)}ms` }}
+                                style={{ transitionDelay: `${100 + (index * 100)}ms` }}
                             >
-                                {/* Animated Line */}
-                                <span className="h-[2px] bg-white w-0 transition-all duration-300 group-hover:w-12 group-hover:mr-6 shadow-[0_0_10px_rgba(255,255,255,0.8)]"></span>
+                                {/* Number Index */}
+                                <span className="text-sm font-mono text-gray-600 font-medium group-hover:text-white transition-colors duration-300">
+                                    0{index + 1}
+                                </span>
 
-                                {/* Link Text */}
-                                <span className="transition-transform duration-300 group-hover:text-gray-300 group-hover:translate-x-2">
+                                {/* Outline Text Effect */}
+                                <span
+                                    className="text-5xl font-black uppercase tracking-tighter transition-all duration-300 group-hover:tracking-widest"
+                                    style={{
+                                        WebkitTextStroke: '1px rgba(255, 255, 255, 0.4)',
+                                        color: isActive(link.path) ? '#ffffff' : 'transparent'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.color = '#ffffff';
+                                        e.target.style.WebkitTextStroke = '0px';
+                                        e.target.style.textShadow = '0 0 20px rgba(255,255,255,0.5)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        if (!isActive(link.path)) {
+                                            e.target.style.color = 'transparent';
+                                            e.target.style.WebkitTextStroke = '1px rgba(255, 255, 255, 0.4)';
+                                            e.target.style.textShadow = 'none';
+                                        }
+                                    }}
+                                >
                                     {link.name}
                                 </span>
                             </Link>
@@ -178,6 +198,7 @@ const Header = () => {
                             Get Started
                         </Link>
                     </div>
+
                 </div>
             </div>
         </>
