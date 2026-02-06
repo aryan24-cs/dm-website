@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,6 +39,27 @@ const Header = () => {
     ];
 
     const isActive = (path) => location.pathname === path;
+
+    const handleContactClick = (e) => {
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+
+        if (location.pathname === '/') {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            navigate('/');
+            // Small delay to ensure navigation completes before scrolling
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    };
 
     return (
         <>
@@ -83,12 +105,12 @@ const Header = () => {
                     {/* Right Side Actions */}
                     <div className="flex items-center gap-4">
                         <div className="hidden lg:block">
-                            <Link
-                                to="/#contact"
+                            <button
+                                onClick={handleContactClick}
                                 className="btn-primary text-xs px-6 py-2.5 rounded-full border-none !bg-white !text-black hover:!bg-gray-200"
                             >
                                 Get Started
-                            </Link>
+                            </button>
                         </div>
 
                         {/* Mobile Menu Button (Hamburger) */}
@@ -189,13 +211,12 @@ const Header = () => {
                         className={`transition-all duration-500 delay-300 ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                             }`}
                     >
-                        <Link
-                            to="/#contact"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                        <button
+                            onClick={handleContactClick}
                             className="inline-flex items-center justify-center w-full py-5 px-8 bg-white text-black font-extrabold text-xl uppercase tracking-widest hover:bg-gray-200 transition-all rounded-sm shadow-xl"
                         >
                             Get Started
-                        </Link>
+                        </button>
                     </div>
 
                 </div>
