@@ -15,6 +15,19 @@ function App() {
       {/* GLOBAL ANIMATED BACKGROUND */}
       <div className="animated-grid-bg" />
 
+      {/* FLOATING ELEMENTS */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Orbs */}
+        <div className="floating-orb orb-1" />
+        <div className="floating-orb orb-2" />
+        <div className="floating-orb orb-3" />
+
+        {/* Geometric Shapes */}
+        <div className="floating-shape shape-square" />
+        <div className="floating-shape shape-circle" />
+        <div className="floating-shape shape-rect" />
+      </div>
+
       <div className="flex flex-col min-h-screen relative z-10 text-white">
         <Header />
         <main className="flex-grow">
