@@ -30,7 +30,7 @@ const Home = () => {
 
                         <AnimateOnScroll animation="fade-in-up" delay={100}>
                             <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-white">
-                                PERFOMANCE <br />
+                                PERFORMANCE <br />
                                 <span className="text-gray-500">THAT DELIVERS</span>
                             </h1>
                         </AnimateOnScroll>
